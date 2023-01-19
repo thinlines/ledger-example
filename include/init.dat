@@ -1,0 +1,34 @@
+account Assets:BJB
+account Equity:Opening Balances
+account Expenses:Bills and Utilities
+account Expenses:Business Services
+account Expenses:Cash
+account Expenses:Entertainment
+account Expenses:Fees and Charges
+account Expenses:Food and Dining
+account Expenses:Gifts
+account Expenses:Health and Fitness
+account Expenses:Housing
+account Expenses:Miscellaneous
+account Expenses:Shopping
+account Expenses:Transportation
+account Income:Runze School
+
+tag UUID
+tag CSV
+tag Imported
+tag Travel
+tag Country
+tag price
+tag symbol
+
+commodity ¥
+	format ¥1,000.00
+	alias CNY
+commodity €
+	format €1,000.00
+	alias EUR
+commodity $
+	format $1,000.00
+	alias USD
+commodity SWTSX
