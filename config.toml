@@ -27,19 +27,19 @@ CNY = "¥"
 # Below are the available options for configuring each account.  Note that
 # you'll probably have to write a Python class to process each account's
 # CSV. There's a class BankCSV which can help you to do that.
-folder = "testBank"  # Folder in the import directory
-name = "Assets:Test Bank"  # The name of the account in ledger
+folder = "bjb"  # Folder in the import directory
+name = "Assets:Bank of Beijing"  # The name of the account in ledger
 
-# What encoding are the CSV files in? This is optional and defaults to
-# UTF-8. Mainly useful if you have accts from foreign institutions that
-# use strange encodings like Alipay from China does.
-encoding = "GB18030"
+## What encoding are the CSV files in? This is optional and defaults to
+## UTF-8. Mainly useful if you have accts from foreign institutions that
+## use strange encodings like Alipay from China does.
+#encoding = "GB18030"
 
 # These define how many lines of the input CSV files should be cut off.
 # They are optional and default to 0.
-num_header_lines = 13
-num_tail_lines = 1
-CSV_date_format = "%Y-%m-%d"   # Optional
+num_header_lines = 4
+num_tail_lines = 0
+CSV_date_format = "%Y/%m/%d"   # Optional
 
 
 [[reports]]
@@ -52,7 +52,7 @@ bottom_line_label = "Net Assets"
 [reports.cmds]
 # These commands are ledger options and arguments.
 Assets = ["^Assets"]
-Liabilities = ["^Liabilities", "--invert", "empty"]
+Liabilities = ["^Liabilities", "--invert", "--empty"]
 
 
 [[reports]]
