@@ -112,7 +112,7 @@ class RedoDocument:
         match = re.search("[A-Z]{3}", self.filename)
         if match:
             currency = self.filename[match.start():match.end()]
-            return Currency(currency, self.config["currencies"])
+            return Currency(currency, self.conf["currencies"])
         else:
             return None
 
