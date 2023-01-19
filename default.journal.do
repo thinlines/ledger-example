@@ -37,10 +37,16 @@ class InputFile:
                 break
         if not self.filetype:
             raise Exception(f"Unknown filetype for {self.path}")
-        self.acctInfo = next((acct for acct in self.conf["accounts"]
-                              if acct["folder"] == self.filetype), None)
+        try:
+            self.acctInfo = next((acct for acct in self.conf["accounts"]
+                                 if acct["folder"] == self.filetype), None)
+            encoding = self.acctInfo.get("encoding", "utf-8")
+        except AttributeError:
+            msg = (f"Account {self.filetype} can't be found. Make sure the"
+                   f" folder is set to {self.filetype} in config.toml")
+            print(msg, file=sys.stderr)
+            exit(1)
 
-        encoding = self.acctInfo.get("encoding", "utf-8")
         with open(self.path, encoding=encoding) as f:
             lines = f.readlines()
             acct = next((acct for acct in self.conf["accounts"]
@@ -56,10 +62,16 @@ class InputFile:
     def discardHeader(self, list, NumLinesToDiscard):
         listIter = iter(list)
         counter = 0
-        while counter < NumLinesToDiscard:
-            next(listIter)
-            counter += 1
-        return [item for item in listIter]
+        try:
+            while counter < NumLinesToDiscard:
+                next(listIter)
+                counter += 1
+            return [item for item in listIter]
+        except StopIteration:
+            msg = (f"Check your num_header_lines for account {self.filetype}."
+                   " It seems to be longer than the CSV file!")
+            print(msg, file=sys.stderr)
+            exit(1)
 
     def __str__(self):
         return "".join(self.lines)
