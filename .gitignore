@@ -1,0 +1,15 @@
+.redo
+__pycache__
+payroll
+*.tmp
+*.tmp2
+.~lock*
+*.pdf
+*.csv
+.st*
+import/**/*.journal
+
+*.svg
+
+README.html
+.env

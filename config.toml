@@ -1,0 +1,75 @@
+# My ledger build system
+
+name = "Bob Jones"  # What is the name on the reports?
+
+price_db = ".pricedb"  # Where price data is contained
+
+first_year = 2021  # First year to look for files for
+current_year = 2023 # Last year to look for files for
+
+# These files will be included with -f in the ledger commands (see
+# reports below)
+includes = [
+  "include/init.dat",
+  "include/aliases.dat",
+  "include/payees.dat"
+]
+
+
+[currencies]
+# The keys here, if in a report filename, will cause a report to be
+# generated in which all currencies are converted to that currency.
+USD = "$"
+CNY = "¥"
+
+
+[[accounts]]
+# Below are the available options for configuring each account.  Note that
+# you'll probably have to write a Python class to process each account's
+# CSV. There's a class BankCSV which can help you to do that.
+folder = "testBank"  # Folder in the import directory
+name = "Assets:Test Bank"  # The name of the account in ledger
+
+# What encoding are the CSV files in? This is optional and defaults to
+# UTF-8. Mainly useful if you have accts from foreign institutions that
+# use strange encodings like Alipay from China does.
+encoding = "GB18030"
+
+# These define how many lines of the input CSV files should be cut off.
+# They are optional and default to 0.
+num_header_lines = 13
+num_tail_lines = 1
+CSV_date_format = "%Y-%m-%d"   # Optional
+
+
+[[reports]]
+# Each of these defines the args given to ledger for the given
+# report. Used in default.txt.do to create reports.
+type = "balance"  # Use this in the filename
+name = "balance statement"  # This will be used in the text and title
+bottom_line_label = "Net Assets"
+
+[reports.cmds]
+# These commands are ledger options and arguments.
+Assets = ["^Assets"]
+Liabilities = ["^Liabilities", "--invert", "empty"]
+
+
+[[reports]]
+type = "income"
+name = "income statement"
+bottom_line_label = "Net Income"
+
+[reports.cmds]
+# The --account tag('country') separates accounts by country
+Income = ["^Income", "--account", "tag('country')", "--invert"]
+Expenses = ["^Expenses"]
+
+
+[[reports]]
+type = "cashflow"
+name = "cash flow statement"
+bottom_line_label = "Net Change in Assets"
+
+[reports.cmds]
+Assets = ["^Assets", "and", "not", "payee", "Opening"]
