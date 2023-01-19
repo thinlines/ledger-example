@@ -31,6 +31,7 @@ for this was figuring out how to convert the CSV files using just
 ledger. Ledger has a `convert` command which does this, but it required
 some scripting in order to prepare the CSV files for conversion.
 
+
 ## Requirements
 
 PDF generation currently uses [paps](https://github.com/dov/paps) to
@@ -38,7 +39,7 @@ generate PDFs, although you could use enscript if you don't need UTF
 currency symbols.
 
 If you don't have Python 3.11, you'll need to `pip install tomli`.
-Look in the do files and change the imports if you have 3.11. I
+
 
 ## How to make it work
 
