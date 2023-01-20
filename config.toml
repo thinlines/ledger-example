@@ -11,8 +11,8 @@ current_year = 2023 # Last year to look for files for
 # reports below)
 includes = [
   "include/init.dat",
-  "include/aliases.dat",
-  "include/payees.dat"
+  "include/payee-aliases.dat",
+  "include/payee-acct-mappings.dat"
 ]
 
 

@@ -1,3 +1,5 @@
 account Expenses:Food and Dining
 	payee 7-11
 	payee BURGER KING
+account Income:My Job
+	payee Paycheck
