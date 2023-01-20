@@ -1,5 +1,6 @@
 #!/bin/python
 
+import sys
 import glob
 import re
 import subprocess
@@ -16,12 +17,21 @@ statements = [
     config["reports"][rpt]["type"] for rpt in range(len(config["reports"]))
 ]
 
+if hasattr(sys, "getandroidapilevel"):
+    onAndroid = True
+else:
+    onAndroid = False
+
+exts = [".txt"]
+if not onAndroid:
+    exts.append(".pdf")
+
 reports = [
     "reports/" + str(year) + "-" + type + "-X-" + currency + ext
     for year in years
     for type in statements
     for currency in currencies.keys()
-    for ext in [".txt", ".pdf"]
+    for ext in exts
 ]
 
 
