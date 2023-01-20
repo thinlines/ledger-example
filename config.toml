@@ -4,7 +4,7 @@ name = "Bob Jones"  # What is the name on the reports?
 
 price_db = "pricedb"  # Where price data is contained
 
-first_year = 2021  # First year to look for files for
+first_year = 2023  # First year to look for files for
 current_year = 2023 # Last year to look for files for
 
 # These files will be included with -f in the ledger commands (see
