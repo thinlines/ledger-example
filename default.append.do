@@ -10,8 +10,8 @@ cat include/{init,payee-aliases,payee-acct-mappings}.dat $2.journal $importjnlfi
 [ "$DEBUG" ] && cp $3 $2.debug
 if ledger -f $3 --sort date --strict print > x; then
 	mv x $2.journal
-	rm $3
 else
-	notify-send "Build failed"
+	mv x $2.debug
 fi
 
+	rm $3
