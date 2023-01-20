@@ -9,7 +9,7 @@ journal.
 import sys
 import os
 import re
-import subprocess
+import subprocess as sp
 import BankCSV
 from io import StringIO
 try:
@@ -136,12 +136,8 @@ class OutputFile:
             ledgerCmd.extend(["--input-date-format", self.csvDateFormat])
         incOpts = list(self.addOptions(self.includes, "-f"))
         ledgerCmd.extend(incOpts)
-        proc = subprocess.run(
-            ledgerCmd,
-            encoding="utf-8",
-            input=self.processedData,
-            capture_output=True
-        )
+        proc = sp.run(ledgerCmd, encoding="utf-8", input=self.processedData,
+                      capture_output=True)
         if proc.returncode:
             raise Exception(f"ledger crapped out:\n{proc.stderr}")
         if proc.stdout:
@@ -149,11 +145,10 @@ class OutputFile:
 
     def redo_ifchange(self, files: list):
         """Run redo-ifchange on the list of files provided"""
-        redoCmd = [
-            "/usr/bin/redo-ifchange", self.inputFilename, "BankCSV.py"
-        ]
-        redoCmd.extend(files)
-        subprocess.run(redoCmd, close_fds=False)
+        cmd = ["which", "redo"]
+        redoBin = sp.run(cmd, capture_output=True).stdout.decode().strip()
+        redoCmd = [redoBin] + files
+        sp.run(redoCmd, close_fds=False)
 
 
 def main():
