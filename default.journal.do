@@ -150,6 +150,11 @@ class OutputFile:
         redoCmd = [redoBin] + files
         sp.run(redoCmd, close_fds=False)
 
+    def redo_always(self):
+        proc = sp.run(["which", "redo-always"], capture_output=True)
+        redoAlwaysBin = proc.stdout.decode().strip()
+        sp.run([redoAlwaysBin])
+
 
 def main():
     target = sys.argv[1]
