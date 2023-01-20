@@ -1,4 +1,4 @@
-account Assets:BJB
+account Assets:Bank of Beijing
 account Equity:Opening Balances
 account Expenses:Bills and Utilities
 account Expenses:Business Services
@@ -12,7 +12,7 @@ account Expenses:Housing
 account Expenses:Miscellaneous
 account Expenses:Shopping
 account Expenses:Transportation
-account Income:Runze School
+account Income:My Job
 
 tag UUID
 tag CSV
