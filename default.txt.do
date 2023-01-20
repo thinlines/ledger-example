@@ -167,8 +167,11 @@ class RedoDocument:
                     output = "=" * len(line)
                     continue
                 output = "\n".join([output, line])
-            output += "  " + label
-            return output
+            if output:
+                output += "  " + label
+                return output
+            else:
+                return ""
         else:
             error = proc.stderr.decode()
             raise Exception("An error occurred with ledger:\n" + error)
