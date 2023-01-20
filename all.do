@@ -41,6 +41,13 @@ journalImports = sorted(
      for year in years if str(year) in file]
 )
 
-args = journalImports + reports
-args.insert(0, "redo-ifchange")
-subprocess.run(args, close_fds=False)
+appendTargets = [str(year) + ".append" for year in years]
+
+redo_ifchange_args = ["redo-ifchange"]
+redo_ifchange_args.extend(reports)
+
+redo_args = ["redo"]
+redo_args.extend(journalImports + appendTargets)
+
+subprocess.run(redo_ifchange_args, close_fds=False)
+subprocess.run(redo_args, close_fds=False)

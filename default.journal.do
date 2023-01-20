@@ -157,7 +157,6 @@ def main():
 
     inputFile = InputFile(noext)
     outputFile = OutputFile(target, noext, inputFile)
-    outputFile.redo_ifchange(outputFile.includes)
     outputFile.writeOutput()
 
 
