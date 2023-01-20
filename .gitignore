@@ -5,7 +5,6 @@ payroll
 *.tmp2
 .~lock*
 *.pdf
-*.csv
 .st*
 import/**/*.journal
 

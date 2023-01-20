@@ -24,9 +24,10 @@ reports = [
     for ext in [".txt", ".pdf"]
 ]
 
-csvFiles = glob.glob("import/**/*.0", recursive=True)
+
+csvFiles = glob.glob("import/**/*.csv", recursive=True)
 journalImports = sorted(
-    [re.sub(r"\.0", r".journal", file) for file in csvFiles
+    [re.sub(r"\.csv", r".journal", file) for file in csvFiles
      for year in years if str(year) in file]
 )
 

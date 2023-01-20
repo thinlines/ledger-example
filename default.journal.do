@@ -25,7 +25,7 @@ class InputFile:
         """Take a filename and prepares it for input to ledger"""
         with open("config.toml", "rb") as f:
             self.conf = tomli.load(f)
-        self.path = baseName + ".0"
+        self.path = baseName + ".csv"
         self.year = re.search("([0-9]{4})", baseName).group(1)
 
         filetypes = [
